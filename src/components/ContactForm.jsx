@@ -3,7 +3,7 @@ import css from './Contacts.module.css';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getContactsThunk, addContactsThunk } from 'redux/contactsThunk';
-import { add } from 'redux/sliceContact';
+// import { add } from 'redux/sliceContact';
 import { getContacts } from 'redux/selectors';
 import Notiflix from 'notiflix';
 
@@ -82,14 +82,4 @@ const ContactForm = () => {
 
 export default ContactForm;
 
-
-//Функция handleSubmit вызывается при отправке формы. Она предотвращает стандартное поведение формы, 
-// проверяет, есть ли контакт с таким же именем в массиве контактов (contacts), и если нет, то отправляет 
-// action add с именем и номером контакта через dispatch. Затем вызывается функция reset, 
-// которая сбрасывает значения name и number.
-
-// Функция handleChange вызывается при изменении значений полей формы. Она обновляет соответствующие 
-// состояния name или number на основе ввода пользователя
-
-// Функция reset сбрасывает значения name и number в пустые строки.
 

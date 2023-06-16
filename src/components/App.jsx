@@ -1,16 +1,24 @@
 
+import { useEffect } from 'react';
 import  ContactList  from './ContactList';
 import  Filter  from './Filter';
 import ContactForm  from './ContactForm';
-import { useSelector } from 'react-redux';
-import { getContacts, getFilter } from 'redux/selectors';
+import { useSelector, useDispatch } from 'react-redux';
+import { getContacts, getFilter, selectIsLoading, selectError } from 'redux/selectors';
+import { getContactsThunk } from 'redux/contactsThunk';
 import css from './Contacts.module.css';
 
 
 const App = () => {
   const filter = useSelector(getFilter);//используется для получения значения filter из Redux store, используя селектор getFilter. Здесь мы получаем значение фильтра из состояния Redux.
   const contacts = useSelector(getContacts);//используется для получения значения contacts из Redux store, используя селектор getContacts. Здесь мы получаем массив контактов из состояния Redux
+  const isLoading = useSelector(selectIsLoading);
+  const error = useSelector(selectError);
+  const dispatch = useDispatch();
 
+  useEffect(() => {
+    dispatch(getContactsThunk());
+  }, [dispatch]);
 // Функция getVisibleContacts фильтрует контакты на основе значения filter
 const getVisibleContacts = () => {
   const normalizedFilter = filter.toLowerCase();
@@ -27,6 +35,7 @@ return (
     <ContactForm  />
     <h1>Contacts</h1>
     <Filter  />
+    {isLoading && !error && <b>Request in progress...</b>}
     <ContactList  contacts={visibleContacts}/>
   </div>
 );
