@@ -1,23 +1,23 @@
 import React from 'react';
 import css from './Contacts.module.css';
 import { useDispatch } from "react-redux";
-import { remove } from 'redux/sliceContact';
+import { delContactsThunk } from 'redux/contactsThunk';
 
 function ContactList({ contacts }) {
   
   const dispatch = useDispatch();// Хук useDispatch используется для получения функции dispatch из Redux для отправки actions в store
   return (
     <ul>
-      {contacts.map(({ id, name, number }) => (
+      {contacts.map(({ id, name, phone }) => (
         <li className={css.list} key={id}>
           <p>
-            {name}: {number}
+            {name}: {phone}
           </p>
           <button
             type="button"
             className={css.button}
             onClick={() => {
-              dispatch(remove(id));// при нажатии вызывает функцию dispatch с action remove(id), где id - это идентификатор контакта.
+              dispatch(delContactsThunk(id));// при нажатии вызывает функцию dispatch с action remove(id), где id - это идентификатор контакта.
             }}
           >
             Delete

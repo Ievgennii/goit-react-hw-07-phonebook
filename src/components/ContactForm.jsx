@@ -1,7 +1,8 @@
 import React from 'react';
 import css from './Contacts.module.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { getContactsThunk, addContactsThunk } from 'redux/contactsThunk';
 import { add } from 'redux/sliceContact';
 import { getContacts } from 'redux/selectors';
 import Notiflix from 'notiflix';
@@ -11,7 +12,15 @@ const ContactForm = () => {
   const [name, setName] = useState('');//Хук useState используется для создания состояния name, которое инициализируется пустой строкой, и функции setName для обновления значения name.
   const [number, setNumber] = useState('');
 
+  useEffect(() => {
+    dispatch(getContactsThunk());
+  }, [dispatch]);
+
   const handleSubmit = e => {
+    const contact = {
+      name: name,
+      phone: number,
+    };
     e.preventDefault();
     if (
       contacts.some(
@@ -20,7 +29,7 @@ const ContactForm = () => {
     ) {
       Notiflix.Notify.info(`${name} is already in contacts`);
     } else {
-      dispatch(add({ name, number }));
+      dispatch(addContactsThunk(contact));
     }
     reset();
   };
