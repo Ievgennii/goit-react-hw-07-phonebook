@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getContactsThunk, addContactsThunk } from 'redux/contactsThunk';
 // import { add } from 'redux/sliceContact';
-import { getContacts } from 'redux/selectors';
+import { selectGetContacts } from 'redux/selectors';
 import Notiflix from 'notiflix';
 
 const ContactForm = () => {
@@ -42,7 +42,7 @@ const ContactForm = () => {
     setName('');
     setNumber('');
   };
-  const contacts = useSelector(getContacts);//Хук useSelector используется для получения значения contacts из Redux store с помощью селектора getContacts.
+  const contacts = useSelector(selectGetContacts);//Хук useSelector используется для получения значения contacts из Redux store с помощью селектора getContacts.
 
   return (
     <form className={css.form} onSubmit={handleSubmit}>

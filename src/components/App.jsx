@@ -4,14 +4,14 @@ import  ContactList  from './ContactList';
 import  Filter  from './Filter';
 import ContactForm  from './ContactForm';
 import { useSelector, useDispatch } from 'react-redux';
-import { getContacts, getFilter, selectIsLoading, selectError } from 'redux/selectors';
+import { selectGetContacts, selectGetFilter, selectIsLoading, selectError } from 'redux/selectors';
 import { getContactsThunk } from 'redux/contactsThunk';
 import css from './Contacts.module.css';
 
 
 const App = () => {
-  const filter = useSelector(getFilter);//используется для получения значения filter из Redux store, используя селектор getFilter. Здесь мы получаем значение фильтра из состояния Redux.
-  const contacts = useSelector(getContacts);//используется для получения значения contacts из Redux store, используя селектор getContacts. Здесь мы получаем массив контактов из состояния Redux
+  const filter = useSelector(selectGetFilter);//используется для получения значения filter из Redux store, используя селектор getFilter. Здесь мы получаем значение фильтра из состояния Redux.
+  const contacts = useSelector(selectGetContacts);//используется для получения значения contacts из Redux store, используя селектор getContacts. Здесь мы получаем массив контактов из состояния Redux
   const isLoading = useSelector(selectIsLoading);
   const error = useSelector(selectError);
   const dispatch = useDispatch();

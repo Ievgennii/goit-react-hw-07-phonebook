@@ -1,11 +1,11 @@
-export const getContacts = state => state.contacts.items;
+export const selectGetContacts = state => state.contacts.items;
 
-export const getFilter = state => state.filter;
-export const handlePending = state => {
+export const selectGetFilter = state => state.filter;
+export const slectHandlePending = state => {
   state.isLoading = true;
 };
 
-export const handleReject = (state, { payload }) => {
+export const selectHandleReject = (state, { payload }) => {
   state.error = payload;
 };
 

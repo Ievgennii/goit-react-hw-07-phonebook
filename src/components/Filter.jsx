@@ -2,10 +2,10 @@ import React from 'react';
 import css from './Contacts.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { setFilter } from 'redux/sliceFilter';
-import { getFilter } from 'redux/selectors';
+import { selectGetFilter } from 'redux/selectors';
 
 function Filter() {
-  const filter = useSelector(getFilter);//Хук useSelector используется для получения значения filter из Redux store с помощью селектора getFilter.
+  const filter = useSelector(selectGetFilter);//Хук useSelector используется для получения значения filter из Redux store с помощью селектора getFilter.
   const dispatch = useDispatch();//Хук useDispatch используется для получения функции dispatch из Redux для отправки actions в store.
   return (
     <div className={css.filter}>
