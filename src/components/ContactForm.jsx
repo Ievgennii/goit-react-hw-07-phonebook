@@ -3,7 +3,6 @@ import css from './Contacts.module.css';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getContactsThunk, addContactsThunk } from 'redux/contactsThunk';
-// import { add } from 'redux/sliceContact';
 import { selectGetContacts } from 'redux/selectors';
 import Notiflix from 'notiflix';
 

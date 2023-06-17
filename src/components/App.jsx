@@ -19,6 +19,7 @@ const App = () => {
   useEffect(() => {
     dispatch(getContactsThunk());
   }, [dispatch]);
+  
 // Функция getVisibleContacts фильтрует контакты на основе значения filter
 const getVisibleContacts = () => {
   const normalizedFilter = filter.toLowerCase();
